@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getPokemons, getPokemonData } from './api';
 import Header from './components/Header';
 import Pokedex from './components/Pokedex';
+import Footer from './components/Footer';
 import './App.css';
 
 const App = () => {
@@ -10,7 +11,7 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [allPages, setAllPages] = useState(0);
 
-  const itensPerPage = 50;
+  const itensPerPage = 45;
 
   useEffect(() => {
     fetchPokemons();
@@ -43,6 +44,7 @@ const App = () => {
         setPage={setPage}
         allPages={allPages}
       />
+      <Footer />
     </div>
   );
 };

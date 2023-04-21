@@ -16,12 +16,6 @@ const Pokedex = (props) => {
   return (
     <div className="pokedex">
       <div className="center">
-        <Pagination 
-          page={page}
-          allPages={allPages}
-          onLeftClick={onLeftClick}
-          onRightClick={onRightClick}
-        />
         {
           (loading) 
             ? <div><p>Carregado...</p></div>
@@ -36,7 +30,7 @@ const Pokedex = (props) => {
 
                     return (
                       <li key={index}>
-                        <img className="list__sprite" src={pokemon.sprites.front_default} alt="" />
+                        <img className="list__sprite" src={pokemon.sprites.other["official-artwork"].front_default} alt="" />
                         <h2 className="list__name">{pokemon.name}</h2>
                         <ul className="list__types">{types}</ul>
                       </li>
@@ -45,6 +39,12 @@ const Pokedex = (props) => {
                 }
               </ul>
         }
+        <Pagination 
+          page={page}
+          allPages={allPages}
+          onLeftClick={onLeftClick}
+          onRightClick={onRightClick}
+        />
       </div>
     </div>
   );

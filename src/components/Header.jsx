@@ -2,7 +2,9 @@ const Header = () => {
   return (
     <div className="header">
       <div className="center">
-        <a href="/"><h1>Logo</h1></a>
+        <div className="header__logo">
+          <a href="/"><img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="logo-pokemon" /></a>
+        </div>
 
         <div className="header__search">
           <input type="text" placeholder="Buscar"/>
