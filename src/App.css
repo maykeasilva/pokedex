@@ -17,3 +17,24 @@
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
 }
+
+/*  */
+
+.pokedex__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pokedex__list li {
+  width: calc(25% - 20px);
+  margin: 10px;
+  list-style: none;
+  text-align: center;
+  border: 3px solid #ccc;
+  border-radius: 10px;
+}
+
+.list__types li {
+  width: fit-content;
+  background-color: #ccc;
+}
