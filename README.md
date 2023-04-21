@@ -1,0 +1,3 @@
+# Pokedex
+
+Projeto em desenvolvimento 🚧
