@@ -7,15 +7,19 @@ import './App.css';
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [pokemons, setPokemons] = useState([]);
+  const [page, setPage] = useState(0);
+  const [allPages, setAllPages] = useState(0);
+
+  const itensPerPage = 50;
 
   useEffect(() => {
     fetchPokemons();
-  }, []);
+  }, [page]);
 
   const fetchPokemons = async () => {
     try {
       setLoading(true);
-      const data = await getPokemons();
+      const data = await getPokemons(itensPerPage, itensPerPage * page);
       const promises = data.results.map(async (pokemon) => {
         return await getPokemonData(pokemon.url);
       });
@@ -23,6 +27,7 @@ const App = () => {
       const results = await Promise.all(promises);
       setPokemons(results);
       setLoading(false);
+      setAllPages(Math.ceil(data.count / itensPerPage));
     } catch (err) {
       console.log(`ERROR: ${err}`);
     };
@@ -34,6 +39,9 @@ const App = () => {
       <Pokedex
         pokemons={pokemons}
         loading={loading}
+        page={page}
+        setPage={setPage}
+        allPages={allPages}
       />
     </div>
   );

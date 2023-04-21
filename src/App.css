@@ -1,9 +1,10 @@
 .header {
-  padding: 10px;
+  padding: 10px 0;
   background-color: cadetblue;
 }
 
 .header > .center {
+  max-width: 1280px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,4 +38,28 @@
 .list__types li {
   width: fit-content;
   background-color: #ccc;
+}
+
+/*  */
+
+.pokedex__pagination {
+  margin-top: 10px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pokedex__pagination p {
+  margin: 0 10px;
+}
+
+.pokedex__pagination button {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  background-color: cadetblue;
+  cursor: pointer;
 }
