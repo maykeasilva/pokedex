@@ -1,4 +1,6 @@
-const Header = () => {
+const Header = (props) => {
+  const { search, setSearch } = props;
+
   return (
     <div className="header">
       <div className="center">
@@ -7,7 +9,7 @@ const Header = () => {
         </div>
 
         <div className="header__search">
-          <input type="text" placeholder="Buscar"/>
+          <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Buscar"/>
         </div>
       </div>
     </div>
