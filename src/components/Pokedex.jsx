@@ -1,3 +1,4 @@
+import Loading from './Loading';
 import Pagination from './Pagination';
 
 const Pokedex = (props) => {
@@ -18,7 +19,7 @@ const Pokedex = (props) => {
       <div className="center">
         {
           (loading) 
-            ? <div><p>Carregado...</p></div>
+            ? <Loading />
             : <ul className="pokedex__list">
                 {
                   pokemons.map((pokemon, index) => {

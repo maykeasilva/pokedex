@@ -1,13 +1,13 @@
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 
 const Pagination = (props) => {
   const { page, allPages, onLeftClick, onRightClick } = props;
   
   return (
-    <div className="pokedex__pagination">
-      <button onClick={onLeftClick}><FaAngleLeft /></button>
+    <div className="pagination">
+      <button onClick={onLeftClick}><VscChevronLeft className="pagination__icon" /></button>
       <p>{page + 1} de {allPages}</p>
-      <button onClick={onRightClick}><FaAngleRight /></button>
+      <button onClick={onRightClick}><VscChevronRight className="pagination__icon" /></button>
     </div>
   );
 };

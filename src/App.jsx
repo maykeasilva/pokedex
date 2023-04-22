@@ -20,6 +20,7 @@ const App = () => {
   const fetchPokemons = async () => {
     try {
       setLoading(true);
+
       const data = await getPokemons(itensPerPage, itensPerPage * page);
       const promises = data.results.map(async (pokemon) => {
         return await getPokemonData(pokemon.url);
@@ -29,6 +30,7 @@ const App = () => {
       setPokemons(results);
       setLoading(false);
       setAllPages(Math.ceil(data.count / itensPerPage));
+  
     } catch (err) {
       console.log(`ERROR: ${err}`);
     };
