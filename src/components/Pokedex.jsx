@@ -1,5 +1,6 @@
 import Loading from './Loading';
 import Pagination from './Pagination';
+import './Pokedex.css';
 
 const Pokedex = (props) => {
   const { pokemons, loading, page, setPage, allPages } = props;
@@ -20,32 +21,40 @@ const Pokedex = (props) => {
         {
           (loading) 
             ? <Loading />
-            : <ul className="pokedex__list">
+            : <>
+              <Pagination 
+                page={page}
+                allPages={allPages}
+                onLeftClick={onLeftClick}
+                onRightClick={onRightClick}
+              />
+              <ul className="cards">
                 {
                   pokemons.map((pokemon, index) => {
                     const types = pokemon.types.map((typeInfo, index) => {
-                      return (
-                        <li key={index}>{typeInfo.type.name}</li>
-                      );
+                      return <li key={index} className={typeInfo.type.name} >{typeInfo.type.name}</li>
                     });
 
                     return (
-                      <li key={index}>
-                        <img className="list__sprite" src={pokemon.sprites.other["official-artwork"].front_default} alt="" />
-                        <h2 className="list__name">{pokemon.name}</h2>
-                        <ul className="list__types">{types}</ul>
+                      <li key={index} className={pokemon.types.map((val) => val.type.name)[0]} >
+                        <ul className="card-content">
+                          <h2 className="card-name">{pokemon.name}</h2>
+                          <ul className="card-types">{types}</ul>
+                        </ul>                        
+                        <img className="card-image" src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
                       </li>
                     );
                   })
                 }
               </ul>
+              <Pagination 
+                page={page}
+                allPages={allPages}
+                onLeftClick={onLeftClick}
+                onRightClick={onRightClick}
+              />
+              </>
         }
-        <Pagination 
-          page={page}
-          allPages={allPages}
-          onLeftClick={onLeftClick}
-          onRightClick={onRightClick}
-        />
       </div>
     </div>
   );

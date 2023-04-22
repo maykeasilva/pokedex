@@ -1,0 +1,30 @@
+.loading {
+  width: 100%;
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading__icon {
+  width: 100px;
+  height: 100px;
+  color: white;
+}
+
+/* KEYFRAMES */
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loading__icon {
+    animation: logo-spin infinite 1s linear;
+  }
+}

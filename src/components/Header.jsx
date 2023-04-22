@@ -1,3 +1,5 @@
+import './Header.css';
+
 const Header = (props) => {
   const { search, setSearch } = props;
 
@@ -9,7 +11,7 @@ const Header = (props) => {
         </div>
 
         <div className="header__search">
-          <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Buscar"/>
+          <input onChange={(e) => setSearch(e.target.value)} value={search} type="text" placeholder="Buscar"/>
         </div>
       </div>
     </div>

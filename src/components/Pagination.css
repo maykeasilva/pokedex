@@ -1,0 +1,26 @@
+.pagination {
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pagination p {
+  margin: 0 10px;
+  color: white;
+}
+
+.pagination button {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  background-color: tomato;
+  cursor: pointer;
+}
+
+.pagination__icon {
+  width: 16px;
+  height: 16px;
+}

@@ -1,0 +1,109 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.cards > li {
+  width: calc(33.3%);
+  max-width: 300px;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 5px 5px 10px #000000cc;
+  cursor: pointer;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-image {
+  width: 100%;
+  max-width: 150px;
+}
+
+.card-types {
+  width: fit-content;
+  list-style: none;
+}
+
+.card-types > li {
+  width: 75px;
+  height: 25px;
+  margin-top: 3px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.cards > .grass { background: linear-gradient(to bottom, #7bb80f 0%, #549300 100%); }
+.cards > .fire { background: linear-gradient(to bottom, #ffa044 0%, #ff6e10 100%); }
+.cards > .water { background: linear-gradient(to bottom, #5699f0 0%, #2b78ca 100%); }
+.cards > .bug { background: linear-gradient(to bottom, #4b6c24 0%, #2e4c12 100%); }
+.cards > .normal { background: linear-gradient(to bottom, #eea992 0%, #cb7965 100%); }
+.cards > .poison { background: linear-gradient(to bottom, #af8f3f 0%, #896d1c 100%); }
+.cards > .electric { background: linear-gradient(to bottom, #ded129 0%, #b5ac0e 100%); }
+.cards > .ground { background: linear-gradient(to bottom, #542702 0%, #3d1401 100%); }
+.cards > .fairy { background: linear-gradient(to bottom, #fbc1fb 0%, #f48ef3 100%); }
+.cards > .fighting { background: linear-gradient(to bottom, #93649c 0%, #704379 100%); }
+.cards > .psychic { background: linear-gradient(to bottom, #ffdbcd 0%, #dbab9e 100%); }
+.cards > .rock { background: linear-gradient(to bottom, #a5bdb4 0%, #768d85 100%); }
+.cards > .ghost { background: linear-gradient(to bottom, #eaf1f7 0%, #c0d6e7 100%); }
+.cards > .ice { background: linear-gradient(to bottom, #86f3fd 0%, #3ddcf8 100%); }
+.cards > .dragon { background: linear-gradient(to bottom, #ec3108 0%, #c11904 100%); }
+.cards > .dark { background: linear-gradient(to bottom, #404040 0%, #202020 100%); }
+.cards > .steel { background: linear-gradient(to bottom, #6f95a5 0%, #426876 100%); }
+.cards > .flying { background: linear-gradient(to bottom, #ffae66 0%, #cf8036 100%); }
+
+.card-types > .grass { background: #365f00; }
+.card-types > .fire { background: #ce590b; }
+.card-types > .water { background: #1667b7; } 
+.card-types > .bug { background: #203c09; }
+.card-types > .normal { background: #b9614e; }
+.card-types > .poison { background: #765c0a; }
+.card-types > .electric { background: #948d08; }
+.card-types > .ground { background: #310a01; }
+.card-types > .fairy { background: #f074ef; }
+.card-types > .fighting { background: #5e3267; }
+.card-types > .psychic { background: #c89286; }
+.card-types > .rock { background: #5e756d; }
+.card-types > .ghost { background: #abc8df; }
+.card-types > .ice { background: #18d0f6; }
+.card-types > .dragon { background: #ab0c02; }
+.card-types > .dark { background: #101010; }
+.card-types > .steel { background: #2b515f; }
+.card-types > .flying { background: #b7681e; }
+
+/* MOBILE */
+
+@media screen and (max-width: 768px) {
+  
+  .pokedex__list > li {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .pokedex__list > li {
+    width: calc(50% - 8px);
+  }
+
+  .pokedex__list > li {
+    margin: 4px;
+  }
+
+  .list__types {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .list__types li {
+    margin-right: 0;
+  }
+}

@@ -1,4 +1,5 @@
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
+import './Pagination.css';
 
 const Pagination = (props) => {
   const { page, allPages, onLeftClick, onRightClick } = props;

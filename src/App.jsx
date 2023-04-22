@@ -3,7 +3,6 @@ import { getPokemons, getPokemonData } from './api';
 import Header from './components/Header';
 import Pokedex from './components/Pokedex';
 import Footer from './components/Footer';
-import './App.css';
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -13,16 +12,17 @@ const App = () => {
   const [search, setSearch] = useState('');
 
   const [pokemonsCount, setPokemonsCount] = useState(0);
-  const [pokemonsName, setPokemonsName] = useState([]);
+  const [pokemonsNames, setPokemonsNames] = useState([]);
 
   const itensPerPage = 45;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchPokemons();
   }, [page]);
   
   useEffect(() => {
-    fetchPokemonsName();
+    fetchPokemonsNames();
   }, [pokemonsCount]);
 
   const fetchPokemons = async () => {
@@ -44,7 +44,7 @@ const App = () => {
     };
   };
 
-  const fetchPokemonsName = async () => {
+  const fetchPokemonsNames = async () => {
     try {
       if (pokemonsCount != 0) {
         const data = await getPokemons(pokemonsCount);
@@ -52,7 +52,7 @@ const App = () => {
           return await pokemon.name;
         })
         const results = await Promise.all(promises);
-        setPokemonsName(results)
+        setPokemonsNames(results);
       }
     } catch (err) {
       console.log(`ERROR: ${err}`);
@@ -61,11 +61,11 @@ const App = () => {
 
   const filteredPokemons = useMemo(() => {
     let searchLowerCase = search.toLowerCase();
-    return pokemonsName.filter((name) => name.toLowerCase().includes(searchLowerCase));
-  }, [search, pokemonsName]);
+    return pokemonsNames.filter((name) => name.toLowerCase().includes(searchLowerCase));
+  }, [search, pokemonsNames]);
 
   return (
-    <div className="App">
+    <>
       <Header 
         search={search} 
         setSearch={setSearch} 
@@ -78,7 +78,7 @@ const App = () => {
         allPages={allPages}
       />
       <Footer />
-    </div>
+    </>
   );
 };
 
