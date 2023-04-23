@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import Loading from './Loading';
 import Pagination from './Pagination';
 import './Pokedex.css';
 
 const Pokedex = (props) => {
+  const [hoverCard, setHoverCard] = useState('');
   const { pokemons, loading, page, setPage, allPages } = props;
 
   const onLeftClick = () => {
@@ -13,7 +15,7 @@ const Pokedex = (props) => {
   const onRightClick = () => {
     if (page + 1 !== allPages)
       setPage(page + 1);
-  }
+  };
 
   return (
     <div className="pokedex">
@@ -22,26 +24,37 @@ const Pokedex = (props) => {
           (loading) 
             ? <Loading />
             : <>
-              <Pagination 
-                page={page}
-                allPages={allPages}
-                onLeftClick={onLeftClick}
-                onRightClick={onRightClick}
-              />
-              <ul className="cards">
+              <div className="pokedex__title">
+                <h1>Pokedex</h1>
+                <Pagination 
+                  page={page}
+                  allPages={allPages}
+                  onLeftClick={onLeftClick}
+                  onRightClick={onRightClick}
+                />
+              </div>
+              <ul className="pokedex__cards">
                 {
                   pokemons.map((pokemon, index) => {
                     const types = pokemon.types.map((typeInfo, index) => {
                       return <li key={index} className={typeInfo.type.name} >{typeInfo.type.name}</li>
                     });
+                    
+                    const classType = pokemon.types.map((val) => val.type.name)[0];
+                    const classScale = index === hoverCard ? 'card__scale' : '';
 
                     return (
-                      <li key={index} className={pokemon.types.map((val) => val.type.name)[0]} >
-                        <ul className="card-content">
-                          <h2 className="card-name">{pokemon.name}</h2>
-                          <ul className="card-types">{types}</ul>
+                      <li 
+                        key={index}
+                        className={classType + " card__single " + classScale}
+                        onMouseOver={() => setHoverCard(index)}
+                        onMouseOut={() => setHoverCard('')}
+                      >
+                        <img className="card__image" src={pokemon.sprites.other["dream_world"].front_default} alt={pokemon.name} />
+                        <ul className="card__content">
+                          <h2 className="card__name">{pokemon.name}</h2>
+                          <ul className="card__types">{types}</ul>
                         </ul>                        
-                        <img className="card-image" src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
                       </li>
                     );
                   })
@@ -61,3 +74,7 @@ const Pokedex = (props) => {
 };
 
 export default Pokedex;
+
+// other["official-artwork"].front_default | front_shiny
+// other["dream_world"].front_default
+// other["home"].front_default | front_shiny

@@ -14,7 +14,7 @@ const App = () => {
   const [pokemonsCount, setPokemonsCount] = useState(0);
   const [pokemonsNames, setPokemonsNames] = useState([]);
 
-  const itensPerPage = 45;
+  const itensPerPage = 48;
 
   useEffect(() => {
     window.scrollTo(0, 0);
