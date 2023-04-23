@@ -65,7 +65,7 @@
 }
 
 .show__filtereds li:hover {
-	padding: 5px;
+	padding-left: 10px;
 	border-radius: 10px;
 	background-color: #20202050;
 	cursor: pointer;

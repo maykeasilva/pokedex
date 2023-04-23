@@ -9,8 +9,6 @@ const App = () => {
   const [pokemons, setPokemons] = useState([]);
   const [page, setPage] = useState(0);
   const [allPages, setAllPages] = useState(0);
-  const [search, setSearch] = useState('');
-  const [classSearch, setClassSearch] = useState('hide__filtereds');
 
   const [pokemonsCount, setPokemonsCount] = useState(0);
   const [pokemonsNames, setPokemonsNames] = useState([]);
@@ -60,20 +58,9 @@ const App = () => {
     };
   };
 
-  const filteredPokemons = useMemo(() => {
-    let searchLowerCase = search.toLowerCase();
-    return pokemonsNames.filter((name) => name.toLowerCase().includes(searchLowerCase));
-  }, [search, pokemonsNames]);
-
   return (
     <>
-      <Header 
-        search={search}
-        setSearch={setSearch}
-        classSearch={classSearch}
-        setClassSearch={setClassSearch}
-        filteredPokemons={filteredPokemons}
-      />
+      <Header pokemonsNames={pokemonsNames} />
       <Pokedex
         pokemons={pokemons}
         loading={loading}

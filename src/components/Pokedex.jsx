@@ -4,18 +4,8 @@ import Pagination from './Pagination';
 import './Pokedex.css';
 
 const Pokedex = (props) => {
+  const { pokemons, loading, page, setPage, allPages } = props;
   const [hoverCard, setHoverCard] = useState('');
-  const { pokemons, loading, page, setPage, allPages, itensPerPage } = props;
-
-  const onLeftClick = () => {
-    if (page > 0)
-      setPage(page - 1);
-  };
-
-  const onRightClick = () => {
-    if (page + 1 !== allPages)
-      setPage(page + 1);
-  };
 
   return (
     <div className="pokedex">
@@ -26,13 +16,9 @@ const Pokedex = (props) => {
             : <>
               <div className="pokedex__title">
                 <h1>Pokedex</h1>
-                <Pagination 
-                  page={page}
-                  allPages={allPages}
-                  onLeftClick={onLeftClick}
-                  onRightClick={onRightClick}
-                />
+                <Pagination page={page} setPage={setPage} allPages={allPages} />
               </div>
+
               <ul className="pokedex__cards">
                 {
                   pokemons.map((pokemon, index) => {
@@ -56,24 +42,16 @@ const Pokedex = (props) => {
                         <ul className="card__content">
                           <h2 className="card__name">{formatName}</h2>
                           <ul className="card__types">{types}</ul>
-                        </ul>                        
+                        </ul>
                       </li>
                     );
                   })
                 }
               </ul>
-              <Pagination 
-                page={page}
-                allPages={allPages}
-                onLeftClick={onLeftClick}
-                onRightClick={onRightClick}
-              />
+
+              <Pagination page={page} setPage={setPage} allPages={allPages} />
               </>
         }
-
-        <div className="modal-single">
-          <h1>Modal</h1>
-        </div>
       </div>
     </div>
   );
