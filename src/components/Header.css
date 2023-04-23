@@ -6,8 +6,8 @@
 }
 
 .header > .center {
-	display: flex;
 	max-width: 1920px;
+	display: flex;
 	align-items: center;
 }
 
@@ -16,13 +16,14 @@
 }
 
 .header__logo img {
-	display: block;
 	width: 100%;
 	max-width: 140px;
+	display: block;
 }
 
 .header__search {
 	width: calc(100% - 180px);
+	position: relative;
 	text-align: right;
 }
 
@@ -30,10 +31,44 @@
 	width: 100%;
 	max-width: 200px;
 	padding: 7px 10px;
+	outline: none;
 	border: none;
 	border-radius: 10px;
 	color: #000;
 	background-color: #fff;
+	transition: 0.5s ease-in-out;
+}
+
+.header__search input:focus {
+	max-width: 350px;
+}
+
+.hide__filtereds { 
+	display: none; 
+}
+
+.show__filtereds {
+	width: 350px;
+	max-height: 500px;
+	padding: 10px;
+	display: block;
+	position: absolute;
+	top: 35px;
+	right: 0;
+	text-align: left;
+	list-style: none;
+	border-radius: 10px;
+	background-color: #efefefd8;
+	z-index: 2;
+	overflow-y: auto;
+	animation: showFilteredsDesktop 0.5s ease-in-out;
+}
+
+.show__filtereds li:hover {
+	padding: 5px;
+	border-radius: 10px;
+	background-color: #20202050;
+	cursor: pointer;
 }
 
 .header__social-network {
@@ -42,11 +77,17 @@
 }
 
 .github__icon {
-	display: block;
 	width: 40px;
 	height: 40px;
+	display: block;
 	color: #fff;
 }
+
+.github__icon:hover {
+	transform: scale(1.1);
+}
+
+/* MOBILE */
 
 @media screen and (max-width: 580px) {
   
@@ -62,13 +103,18 @@
 
 	.header__search {
 		width: 100%;
-		margin: 10px 0;
+		max-width: 300px;
+		margin: 10px auto;
 		text-align: center;
 	}
 
 	.header__search input {
 		width: 100%;
-		max-width: initial;
+		max-width: 300px;
+	}
+
+	.header__search input:focus {
+		max-width: 300px;
 	}
 
 	.github__icon {
@@ -76,4 +122,30 @@
 		top: calc(50% - 40px);
 		right: 10px;
 	}
+
+	.show__filtereds {
+		width: 100%;
+		max-width: 300px;
+		animation: showFilteredsMobile 0.5s ease-in-out;
+	}
+}
+
+/* KEYFRAMES */
+
+@keyframes showFilteredsDesktop {
+  from {
+    width: 200px;
+  }
+  to {
+    width: 350px;
+  }
+}
+
+@keyframes showFilteredsMobile {
+  from {
+    height: 0;
+  }
+  to {
+    height: 500px;
+  }
 }

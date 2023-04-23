@@ -1,12 +1,23 @@
-.pagination {
-  margin-right: 10px;
+.pokedex__title > .pagination {
   display: flex;
   justify-content: flex-end;
 }
 
+.pokedex > .center > .pagination {
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: #ff634780;
+  box-shadow: 0px 5px 7px #00000066;
+}
+
 .pagination p {
   margin: 0 10px;
-  color: white;
+  font-weight: 500;
+  color: #fff;
 }
 
 .pagination button {
@@ -15,12 +26,15 @@
   align-items: center;
   border: none;
   border-radius: 50%;
-  color: white;
-  background-color: tomato;
+  color: #fff;
+  background-color: #ff6347;
   cursor: pointer;
 }
 
 .pagination__icon {
-  width: 16px;
-  height: 16px;
+  transform: scale(1.25);
+}
+
+.pagination button:hover {
+  background-color: #e9563c;
 }

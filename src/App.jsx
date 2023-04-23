@@ -10,6 +10,7 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [allPages, setAllPages] = useState(0);
   const [search, setSearch] = useState('');
+  const [classSearch, setClassSearch] = useState('hide__filtereds');
 
   const [pokemonsCount, setPokemonsCount] = useState(0);
   const [pokemonsNames, setPokemonsNames] = useState([]);
@@ -67,8 +68,11 @@ const App = () => {
   return (
     <>
       <Header 
-        search={search} 
-        setSearch={setSearch} 
+        search={search}
+        setSearch={setSearch}
+        classSearch={classSearch}
+        setClassSearch={setClassSearch}
+        filteredPokemons={filteredPokemons}
       />
       <Pokedex
         pokemons={pokemons}

@@ -4,6 +4,11 @@
   padding: 10px 0;
   font-size: 13px;
   text-align: center;
-  color: white;
-  background-color: tomato;
+  color: #fff;
+  background-color: #ff6347;
+  cursor: default;
+}
+
+.footer__icon {
+  transform: scale(1.25);
 }

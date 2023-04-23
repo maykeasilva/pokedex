@@ -5,7 +5,7 @@ import './Pokedex.css';
 
 const Pokedex = (props) => {
   const [hoverCard, setHoverCard] = useState('');
-  const { pokemons, loading, page, setPage, allPages } = props;
+  const { pokemons, loading, page, setPage, allPages, itensPerPage } = props;
 
   const onLeftClick = () => {
     if (page > 0)
@@ -36,12 +36,14 @@ const Pokedex = (props) => {
               <ul className="pokedex__cards">
                 {
                   pokemons.map((pokemon, index) => {
-                    const types = pokemon.types.map((typeInfo, index) => {
-                      return <li key={index} className={typeInfo.type.name} >{typeInfo.type.name}</li>
+                    let formatName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+                    let types = pokemon.types.map((typeInfo, index) => {
+                      let formatTypes = typeInfo.type.name.charAt(0).toUpperCase() + typeInfo.type.name.slice(1);
+                      return <li key={index} className={typeInfo.type.name} >{formatTypes}</li>
                     });
-                    
-                    const classType = pokemon.types.map((val) => val.type.name)[0];
-                    const classScale = index === hoverCard ? 'card__scale' : '';
+
+                    let classType = pokemon.types.map((val) => val.type.name)[0];
+                    let classScale = index === hoverCard ? 'card__scale' : '';
 
                     return (
                       <li 
@@ -50,9 +52,9 @@ const Pokedex = (props) => {
                         onMouseOver={() => setHoverCard(index)}
                         onMouseOut={() => setHoverCard('')}
                       >
-                        <img className="card__image" src={pokemon.sprites.other["dream_world"].front_default} alt={pokemon.name} />
+                        <img className="card__image" src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
                         <ul className="card__content">
-                          <h2 className="card__name">{pokemon.name}</h2>
+                          <h2 className="card__name">{formatName}</h2>
                           <ul className="card__types">{types}</ul>
                         </ul>                        
                       </li>
@@ -68,13 +70,13 @@ const Pokedex = (props) => {
               />
               </>
         }
+
+        <div className="modal-single">
+          <h1>Modal</h1>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Pokedex;
-
-// other["official-artwork"].front_default | front_shiny
-// other["dream_world"].front_default
-// other["home"].front_default | front_shiny
