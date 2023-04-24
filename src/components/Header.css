@@ -1,6 +1,6 @@
 .header {
 	margin-bottom: 10px;
-	padding: 5px 0;
+	padding: 7px 0;
 	background-color: #ff6347;
 	box-shadow: 0px 5px 7px #00000066;
 }
@@ -43,11 +43,7 @@
 	max-width: 350px;
 }
 
-.hide__filtereds { 
-	display: none; 
-}
-
-.show__filtereds {
+.header__filtereds {
 	width: 350px;
 	max-height: 500px;
 	padding: 10px;
@@ -64,14 +60,14 @@
 	animation: showFilteredsDesktop 0.5s ease-in-out;
 }
 
-.show__filtereds li:hover {
+.header__filtereds li:hover {
 	padding-left: 10px;
 	border-radius: 10px;
 	background-color: #20202050;
 	cursor: pointer;
 }
 
-.header__social-network {
+.header__contact {
 	width: 40px;
 	margin-left: 10px;
 }
@@ -123,7 +119,7 @@
 		right: 10px;
 	}
 
-	.show__filtereds {
+	.header__filtereds {
 		width: 100%;
 		max-width: 300px;
 		animation: showFilteredsMobile 0.5s ease-in-out;

@@ -5,6 +5,7 @@ import Pokedex from './components/Pokedex';
 import Footer from './components/Footer';
 
 const App = () => {
+  
   const [loading, setLoading] = useState(false);
   const [pokemons, setPokemons] = useState([]);
   const [page, setPage] = useState(0);

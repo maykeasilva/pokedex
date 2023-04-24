@@ -1,9 +1,8 @@
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 import './Pagination.css';
 
-const Pagination = (props) => {
-  const { page, setPage, allPages } = props;
-  
+const Pagination = ({ page, setPage, allPages }) => {
+
   const onLeftClick = () => {
     if (page > 0)
       setPage(page - 1);
@@ -15,10 +14,10 @@ const Pagination = (props) => {
   };
 
   return (
-    <div className="pagination">
-      <button onClick={onLeftClick}><VscChevronLeft className="pagination__icon" /></button>
+    <div className='pagination'>
+      <button onClick={onLeftClick}><VscChevronLeft className='pagination__icon' /></button>
       <p>{page + 1} de {allPages}</p>
-      <button onClick={onRightClick}><VscChevronRight className="pagination__icon" /></button>
+      <button onClick={onRightClick}><VscChevronRight className='pagination__icon' /></button>
     </div>
   );
 };
