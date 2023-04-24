@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import Loading from './Loading';
 import Pagination from './Pagination';
-import { VscChromeClose } from 'react-icons/vsc';
+import Modal from './Modal';
 import './Pokedex.css';
 
 const Pokedex = ({ pokemons, loading, page, setPage, allPages }) => {
 
-  const [hoverCard, setHoverCard] = useState('');
+  const [hoverCard, setHoverCard] = useState(null);
   const [renderModal, setRenderModal] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(null);
 
   return (
     <div className='pokedex'>
@@ -18,17 +18,21 @@ const Pokedex = ({ pokemons, loading, page, setPage, allPages }) => {
             ? <Loading />
             : <>
               <div className='pokedex__title'>
-                <h1>Pokedex</h1>
-                <Pagination page={page} setPage={setPage} allPages={allPages} />
+                <h1>Pokédex</h1>
+                <Pagination 
+                  page={page} 
+                  setPage={setPage} 
+                  allPages={allPages} 
+                />
               </div>
 
               <ul className='pokedex__cards'>
                 {
                   pokemons.map((pokemon, index) => {
                     let formatName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-                    let types = pokemon.types.map((typeInfo, index) => {
-                      let formatTypes = typeInfo.type.name.charAt(0).toUpperCase() + typeInfo.type.name.slice(1);
-                      return <li key={index} className={'type-' + typeInfo.type.name} >{formatTypes}</li>
+                    let types = pokemon.types.map((value, index) => {
+                      let formatTypes = value.type.name.charAt(0).toUpperCase() + value.type.name.slice(1);
+                      return <li key={index} className={'type-' + value.type.name} >{formatTypes}</li>
                     });
 
                     let classType = pokemon.types.map((val) => val.type.name)[0];
@@ -39,7 +43,7 @@ const Pokedex = ({ pokemons, loading, page, setPage, allPages }) => {
                         key={index}
                         className={classType + ' card__single ' + classScale}
                         onMouseOver={() => setHoverCard(index)}
-                        onMouseOut={() => setHoverCard('')}
+                        onMouseOut={() => setHoverCard(null)}
                         onClick={() => {
                           setRenderModal(true)
                           setCurrentIndex(index)
@@ -57,26 +61,19 @@ const Pokedex = ({ pokemons, loading, page, setPage, allPages }) => {
               </ul>
 
               {
-                (renderModal) &&
-                <div className='pokedex__modal'>
-                  <div className={'modal__single ' + pokemons[currentIndex].types.map((val) => val.type.name)[0]}>
-                    <button onClick={() => {
-                      setRenderModal(false)
-                      setCurrentIndex(null)
-                    }}>
-                      <VscChromeClose className='close__icon' />
-                    </button>
-
-                    <img className='modal__image' src={pokemons[currentIndex].sprites.other['official-artwork'].front_default} alt={pokemons[currentIndex].name} />
-                    <h2 className='modal__name'>{pokemons[currentIndex].name}</h2>
-                    <ul className='modal__types'>{pokemons[currentIndex].types.map((value, index) => <li key={index} className={value.type.name}>{value.type.name}</li>)}</ul>
-                    <ul className='modal__stats'>{pokemons[currentIndex].stats.map((value, index) => <li key={index}>{value.stat.name}: {value.base_stat}</li>)}</ul>
-                    <ul className='modal__abilities'>{pokemons[currentIndex].abilities.map((value, index) => <li key={index}>{value.ability.name}</li>)}</ul>
-                  </div>
-                </div>
+                (renderModal) && <Modal 
+                  pokemons={pokemons} 
+                  setRenderModal={setRenderModal} 
+                  currentIndex={currentIndex} 
+                  setCurrentIndex={setCurrentIndex} 
+                />
               }
 
-              <Pagination page={page} setPage={setPage} allPages={allPages} />
+              <Pagination 
+                page={page} 
+                setPage={setPage} 
+                allPages={allPages} 
+              />
             </>
         }
       </div>

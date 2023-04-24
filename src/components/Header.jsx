@@ -1,12 +1,27 @@
 import { useState, useMemo } from 'react';
-import { VscGithubInverted } from 'react-icons/vsc';
+import { VscHeartFilled, VscGithubInverted } from 'react-icons/vsc';
 import Logo from '../assets/logo.webp';
 import './Header.css';
 
-const Header = ({ pokemonsNames }) => {
+const Header = ({ searchPokemons, pokemonsNames }) => {
 
   const [search, setSearch] = useState('');
   const [renderAutocomplete, setRenderAutocomplete] = useState(false);
+
+  const onChangeHandler = (e) => {
+    setSearch(e.target.value);
+    
+    if (e.target.value.length === 0) {
+      searchPokemons(undefined);
+    };
+  };
+
+  const handleAutocompleteClick = (e) => {
+    const selectedValue = e.target.getAttribute('value');
+    setSearch(selectedValue);
+    setRenderAutocomplete(false);
+    searchPokemons(selectedValue);
+  }
 
   const autocomplete = useMemo(() => {
     let searchLowerCase = search.toLowerCase();
@@ -24,9 +39,13 @@ const Header = ({ pokemonsNames }) => {
             type='text'
             placeholder='Buscar'
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={onChangeHandler}
             onFocus={() => setRenderAutocomplete(true)}
-            onBlur={() => setRenderAutocomplete(false)}
+            onBlur={() => {
+              setTimeout(() => {
+                setRenderAutocomplete(false)
+              }, 1000)
+            }}
           />
 
           {
@@ -36,7 +55,7 @@ const Header = ({ pokemonsNames }) => {
                 (autocomplete.length)
                   ? autocomplete.map((value, index) => {
                     let formatName = value.charAt(0).toUpperCase() + value.slice(1);
-                    return <li key={index}>{formatName}</li>;
+                    return <li value={value} key={index} onClick={handleAutocompleteClick}>{formatName}</li>;
                   })
                   : <li>Nenhum pokemon encontrado.</li>
               }
