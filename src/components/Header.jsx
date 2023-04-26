@@ -42,7 +42,7 @@ const Header = ({ searchPokemons, allNames }) => {
                       : <li>Nenhum pokemon encontrado.</li>
                   }
                 </ul>
-              : null
+              : <ul className='header__filtereds' style={{ animation: 'hideFiltereds 0.4s ease-in-out', height: '0px' }}></ul>
           }
 
         </div>
