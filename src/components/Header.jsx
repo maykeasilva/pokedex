@@ -3,19 +3,19 @@ import { VscHeartFilled, VscGithubInverted } from 'react-icons/vsc';
 import Logo from '../assets/logo.webp';
 import './Header.css';
 
-const Header = ({ onSearch, names }) => {
+const Header = ({ searchPokemons, allNames }) => {
   const [search, setSearch] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   
   const handleAutocomplete = (event) => {
-    onSearch(event.target.textContent);
+    searchPokemons(event.target.textContent);
     setSearch('');
   };
 
   const autocomplete = useMemo(() => {
     let searchLowerCase = search.toLowerCase();
-    return names.filter((value) => value.toLowerCase().includes(searchLowerCase));
-  }, [search, names]);
+    return allNames.filter((value) => value.toLowerCase().includes(searchLowerCase));
+  }, [search, allNames]);
 
   return (
     <div className='header'>

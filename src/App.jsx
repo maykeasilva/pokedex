@@ -10,8 +10,8 @@ const App = () => {
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const [allPages, setAllPages] = useState(0);
-  const [allPokemons, setAllPokemons] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [allPokemons, setAllPokemons] = useState(true);
   
   const itensPerPage = 48;
 
@@ -27,7 +27,6 @@ const App = () => {
   const fetchPokemons = async () => {
     try {
       setLoading(true);
-
       const data = await getPokemons(itensPerPage, itensPerPage * page);
       const promises = data.results.map(async (pokemon) => {
         return await getPokemonsData(pokemon.url);
@@ -59,18 +58,21 @@ const App = () => {
   };
 
   const searchPokemons = async (pokemon) => {
-    setLoading(true);
-
-    const result = await searchPokemonData(pokemon);
-
-    setAllPokemons(false);
-    setPokemons([result])
-    setLoading(false);
-  }
+    try {
+      setLoading(true);
+      const result = await searchPokemonData(pokemon);
+  
+      setAllPokemons(false);
+      setPokemons([result])
+      setLoading(false);
+    } catch (err) {
+      console.log(`ERROR: ${err}`);
+    };
+  };
 
   return (
     <>
-      <Header onSearch={searchPokemons} names={allNames} />
+      <Header searchPokemons={searchPokemons} allNames={allNames} />
 
       { (allPokemons)
           ? <Pokedex pokemons={pokemons} loading={loading} page={page} setPage={setPage} allPages={allPages} />
