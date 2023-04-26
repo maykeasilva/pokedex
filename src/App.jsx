@@ -27,16 +27,19 @@ const App = () => {
   const fetchPokemons = async () => {
     try {
       setLoading(true);
-      const data = await getPokemons(itensPerPage, itensPerPage * page);
-      const promises = data.results.map(async (pokemon) => {
-        return await getPokemonsData(pokemon.url);
-      });
-      const results = await Promise.all(promises);
 
-      setCount(data.count);
-      setPokemons(results);
-      setAllPages(Math.ceil(data.count / itensPerPage));
-      setLoading(false);
+      setTimeout(async () => {
+        const data = await getPokemons(itensPerPage, itensPerPage * page);
+        const promises = data.results.map(async (pokemon) => {
+          return await getPokemonsData(pokemon.url);
+        });
+        const results = await Promise.all(promises);
+  
+        setCount(data.count);
+        setPokemons(results);
+        setAllPages(Math.ceil(data.count / itensPerPage));
+        setLoading(false);
+      }, 1000);
     } catch (err) {
       console.log(`ERROR: ${err}`);
     };

@@ -2,15 +2,16 @@ import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 import './Pagination.css';
 
 const Pagination = ({ page, setPage, allPages }) => {
-
   const onLeftClick = () => {
-    if (page > 0)
+    if (page > 0) {
       setPage(page - 1);
+    };
   };
 
   const onRightClick = () => {
-    if (page + 1 !== allPages)
+    if (page + 1 !== allPages) {
       setPage(page + 1);
+    }; 
   };
 
   return (

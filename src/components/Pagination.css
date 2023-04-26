@@ -1,11 +1,7 @@
-.pokedex__title > .pagination {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.pokedex > .center > .pagination {
-  max-width: 200px;
+.pagination {
+  width: 200px;
   margin: 0 auto;
+  margin-bottom: 10px;
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -32,7 +28,8 @@
 }
 
 .pagination__icon {
-  transform: scale(1.25);
+  width: 18px;
+  height: 18px;
 }
 
 .pagination button:hover {
