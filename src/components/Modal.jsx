@@ -26,9 +26,9 @@ const Modal = ({ pokemons, setRenderModal, currentIndex, setCurrentIndex }) => {
       return word.charAt(0).toUpperCase() + word.slice(1);
     });
 
-    let test = value.base_stat * 0.2;
+    let test = ( value.base_stat / 255 ) * 75;
 
-    return <li key={index}><span>{replaceStats.join(' ')}</span><span style={{width: test + '%'}}></span></li>;
+    return <li key={index}><p>{replaceStats.join(' ')}:</p><span style={{width: test + '%'}}></span><b>{value.base_stat}</b></li>;
   });
 
   return (

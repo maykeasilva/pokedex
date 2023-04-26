@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { VscHeartFilled, VscGithubInverted } from 'react-icons/vsc';
+import { VscSearch, VscHeartFilled, VscGithubInverted } from 'react-icons/vsc';
 import Logo from '../assets/logo.webp';
 import './Header.css';
 
@@ -20,10 +20,8 @@ const Header = ({ searchPokemons, allNames }) => {
   return (
     <div className='header'>
       <div className='center'>
-        <div className='header__logo'>
-          <a href='/'><img src={Logo} alt='logo-pokemon' /></a>
-        </div>
         <div className='header__search'>
+          <VscSearch className='search__icon'/>
           <input
             type='text'
             placeholder='Pesquisar'

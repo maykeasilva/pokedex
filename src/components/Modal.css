@@ -75,13 +75,17 @@
   align-items: center;
 }
 
-.modal__stats li span:first-child {
-  width: 25%;
+.modal__stats li p {
+  width: 22%;
 }
 
-.modal__stats li span:last-child {
-  max-width: 435px;
-  height: 12px;
+.modal__stats li span {
+  height: 6px;
   border-radius: 20px;
   background-color: #fff;
+}
+
+.modal__stats li b {
+  width: fit-content;
+  text-align: left
 }
