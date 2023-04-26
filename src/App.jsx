@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
-import { getPokemons, getPokemonData, searchPokemonData } from './api';
+import { getPokemons, getPokemonsData, searchPokemonData } from './api';
 import Header from './components/Header';
 import Pokedex from './components/Pokedex';
 import Footer from './components/Footer';
 
 const App = () => {
+  const [allNames, setAllNames] = useState([]);
   const [pokemons, setPokemons] = useState([]);
-  const [pokemonsNames, setPokemonsNames] = useState([]);
+  const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const [allPages, setAllPages] = useState(0);
-  const [count, setCount] = useState(0);
+  const [allPokemons, setAllPokemons] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [notFound, setNotFound] = useState(false);
   
   const itensPerPage = 48;
 
@@ -30,10 +30,10 @@ const App = () => {
 
       const data = await getPokemons(itensPerPage, itensPerPage * page);
       const promises = data.results.map(async (pokemon) => {
-        return await getPokemonData(pokemon.url);
+        return await getPokemonsData(pokemon.url);
       });
-
       const results = await Promise.all(promises);
+
       setCount(data.count);
       setPokemons(results);
       setAllPages(Math.ceil(data.count / itensPerPage));
@@ -51,7 +51,7 @@ const App = () => {
           return await pokemon.name;
         })
         const results = await Promise.all(promises);
-        setPokemonsNames(results);
+        setAllNames(results);
       }
     } catch (err) {
       console.log(`ERROR: ${err}`);
@@ -59,33 +59,24 @@ const App = () => {
   };
 
   const searchPokemons = async (pokemon) => {
-    if (!pokemon) {
-      return fetchPokemons();
-    };
-
     setLoading(true);
-    setNotFound(false);
+
     const result = await searchPokemonData(pokemon);
 
-    if (!result) {
-      setNotFound(true);
-    } else {
-      setPokemons([result])
-      setPage(0);
-      setAllPages(1);
-    };
+    setAllPokemons(false);
+    setPokemons([result])
     setLoading(false);
   }
 
   return (
     <>
-      <Header searchPokemons={searchPokemons} pokemonsNames={pokemonsNames} />
-      
-      {(notFound)
-        ? (<div><p>Nenhum pokemon encontrado</p></div>) 
-        : (<Pokedex pokemons={pokemons} loading={loading} page={page} setPage={setPage} allPages={allPages} />)
+      <Header onSearch={searchPokemons} names={allNames} />
+
+      { (allPokemons)
+          ? <Pokedex pokemons={pokemons} loading={loading} page={page} setPage={setPage} allPages={allPages} />
+          : <Pokedex pokemons={pokemons} loading={loading} />
       }
-      
+
       <Footer />
     </>
   );

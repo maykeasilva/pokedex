@@ -3,30 +3,19 @@ import { VscHeartFilled, VscGithubInverted } from 'react-icons/vsc';
 import Logo from '../assets/logo.webp';
 import './Header.css';
 
-const Header = ({ searchPokemons, pokemonsNames }) => {
-
+const Header = ({ onSearch, names }) => {
   const [search, setSearch] = useState('');
-  const [renderAutocomplete, setRenderAutocomplete] = useState(false);
-
-  const onChangeHandler = (e) => {
-    setSearch(e.target.value);
-    
-    if (e.target.value.length === 0) {
-      searchPokemons(undefined);
-    };
+  const [isSearch, setIsSearch] = useState(false);
+  
+  const handleAutocomplete = (event) => {
+    onSearch(event.target.textContent);
+    setSearch('');
   };
-
-  const handleAutocompleteClick = (e) => {
-    const selectedValue = e.target.getAttribute('value');
-    setSearch(selectedValue);
-    setRenderAutocomplete(false);
-    searchPokemons(selectedValue);
-  }
 
   const autocomplete = useMemo(() => {
     let searchLowerCase = search.toLowerCase();
-    return pokemonsNames.filter((name) => name.toLowerCase().includes(searchLowerCase));
-  }, [search, pokemonsNames]);
+    return names.filter((value) => value.toLowerCase().includes(searchLowerCase));
+  }, [search, names]);
 
   return (
     <div className='header'>
@@ -37,29 +26,23 @@ const Header = ({ searchPokemons, pokemonsNames }) => {
         <div className='header__search'>
           <input
             type='text'
-            placeholder='Buscar'
+            placeholder='Pesquisar'
             value={search}
-            onChange={onChangeHandler}
-            onFocus={() => setRenderAutocomplete(true)}
-            onBlur={() => {
-              setTimeout(() => {
-                setRenderAutocomplete(false)
-              }, 1000)
-            }}
+            onChange={(event) => setSearch(event.target.value)}
+            onFocus={() => setIsSearch(true)}
+            onBlur={() => setTimeout(() => setIsSearch(false), 100)}
           />
 
-          {
-            (renderAutocomplete) &&
-            <ul className='header__filtereds'>
-              {
-                (autocomplete.length)
-                  ? autocomplete.map((value, index) => {
-                    let formatName = value.charAt(0).toUpperCase() + value.slice(1);
-                    return <li value={value} key={index} onClick={handleAutocompleteClick}>{formatName}</li>;
-                  })
-                  : <li>Nenhum pokemon encontrado.</li>
-              }
-            </ul>
+          { (isSearch) 
+              ? <ul className='header__filtereds'>
+                  { (autocomplete.length)
+                      ? autocomplete.map((value, index) => {
+                        return <li key={index} onClick={handleAutocomplete}>{value}</li>;
+                      })
+                      : <li>Nenhum pokemon encontrado.</li>
+                  }
+                </ul>
+              : null
           }
 
         </div>

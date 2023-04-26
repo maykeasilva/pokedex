@@ -18,7 +18,7 @@ const getPokemons = async (limit, offset = 0) => {
   };
 };
 
-const getPokemonData = async (url) => {
+const getPokemonsData = async (url) => {
   try {
     const response = await fetch(url);
     return await response.json();
@@ -27,4 +27,4 @@ const getPokemonData = async (url) => {
   };
 };
 
-export { searchPokemonData, getPokemons, getPokemonData };
+export { searchPokemonData, getPokemons, getPokemonsData };
