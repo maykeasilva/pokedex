@@ -12,13 +12,13 @@
 }
 
 .header__search {
-	width: calc(100% - 50px);
+	width: fit-content;
+	margin: 0 auto;
 	position: relative;
 }
 
 .header__search input {
-	width: 100%;
-	max-width: 250px;
+	width: 270px;
 	height: 30px;
 	padding: 0 10px 0 30px;
 	outline: none;
@@ -28,7 +28,7 @@
 }
 
 .header__filtereds {
-	width: 250px;
+	width: 270px;
 	height: 250px;
 	position: absolute;
 	top: 30px;
@@ -51,6 +51,14 @@
 	cursor: pointer;
 }
 
+.menu__icon {
+	width: 32px;
+	height: 32px;
+	display: block;
+	color: #fff;
+	cursor: pointer;
+}
+
 .search__icon {
 	width: 20px;
 	height: 20px;
@@ -60,14 +68,32 @@
 }
 
 .github__icon {
-	width: 40px;
-	height: 40px;
+	width: 32px;
+	height: 32px;
 	display: block;
 	color: #fff;
 }
 
 .github__icon:hover {
 	transform: scale(1.1);
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 425px) {
+  
+	.header__search { 
+    width: 100%;
+		margin: 0 10px;
+  }
+
+	.header__search input { 
+    width: 100%;
+  }
+
+	.header__filtereds {
+		width: 100%;
+	}
 }
 
 /* KEYFRAMES */

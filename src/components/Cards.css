@@ -6,11 +6,10 @@
 
 .pokedex__cards > li {
   width: calc(33.3% - 20px);
-  max-width: 300px;
+  max-width: 250px;
   margin: 10px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
+  padding-bottom: 10px;
+  text-align: center;
   list-style: none;
   border-radius: 10px;
   color: #fff;
@@ -18,65 +17,41 @@
   cursor: pointer;
 }
 
-.card__content {
-  width: 60%;
-  text-align: right;
+.card__image {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #00000040;
 }
 
 .card__name {
   margin-bottom: 10px;
-  line-height: 24px;
-}
-
-.card__image {
-  width: 40%;
-  max-width: 150px;
-  border-radius: 10px;
-  background-color: #00000040;
-}
-
-.card__types {
-  margin-left: calc(100% - 75px);
-  list-style: none;
 }
 
 .card__types > li {
-  width: 75px;
-  height: 25px;
-  margin-top: 3px;
-  text-align: center;
+  width: 80px;
+  margin: 3px auto;
+  list-style: none;
   border-radius: 10px;
 }
 
 .card__scale {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* MOBILE */
 
-@media screen and (max-width: 1000px) {
-
-  .pokedex__cards {
-    justify-content: center;
-  }
+@media screen and (max-width: 768px) {
 
   .pokedex__cards > li { 
-    width: calc(50% - 20px); 
+    width: calc(50% - 20px);
   }
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 425px) {
   
   .pokedex__cards > li { 
-    width: 100%; 
-  }
-}
-
-@media screen and (max-width: 400px) {
-
-  .pokedex__title {
-    flex-direction: column;
-    padding-bottom: 10px;
+    width: 100%;
   }
 }
 

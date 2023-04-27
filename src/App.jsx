@@ -13,7 +13,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [allPokemons, setAllPokemons] = useState(true);
   
-  const itensPerPage = 48;
+  const itensPerPage = 60;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,18 +28,16 @@ const App = () => {
     try {
       setLoading(true);
 
-      setTimeout(async () => {
-        const data = await getPokemons(itensPerPage, itensPerPage * page);
-        const promises = data.results.map(async (pokemon) => {
-          return await getPokemonsData(pokemon.url);
-        });
-        const results = await Promise.all(promises);
-  
-        setCount(data.count);
-        setPokemons(results);
-        setAllPages(Math.ceil(data.count / itensPerPage));
-        setLoading(false);
-      }, 1000);
+      const data = await getPokemons(itensPerPage, itensPerPage * page);
+      const promises = data.results.map(async (pokemon) => {
+        return await getPokemonsData(pokemon.url);
+      });
+      const results = await Promise.all(promises);
+
+      setCount(data.count);
+      setPokemons(results);
+      setAllPages(Math.ceil(data.count / itensPerPage));
+      setLoading(false);
     } catch (err) {
       console.log(`ERROR: ${err}`);
     };
