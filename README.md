@@ -1,12 +1,12 @@
 # Pokedex
 
-## Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-HTML | CSS | JavaScript | React
+* HTML | CSS | JavaScript | React
+* Documentação da Api utilizada no projeto - [POKEAPI](https://pokeapi.co/docs/v2)
 
-## API Utilizada
-[POKEAPI](https://pokeapi.co/docs/v2) - Documentação da Api utilizada no projeto.
-
-## Site
+## 💻 Site
 
 [POKEDEX](https://pokedex-7byc.onrender.com/) - Link para melhor vizualização
+
+## 
