@@ -8,14 +8,14 @@ const Cards = ({ pokemons }) => {
     <ul className='pokedex__cards'>
       {
         pokemons.map((pokemon, index) => {
-          let formatName = pokemon.name.replace(/-/g, ' ')
+          const formatName = pokemon.name.replace(/-/g, ' ')
             .split(' ')
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
 
-          let types = pokemon.types.map((value, index) => {
+          const types = pokemon.types.map((value, index) => {
             let formatTypes = value.type.name.charAt(0).toUpperCase() + value.type.name.slice(1);
-            return <li key={index} className={'type-' + value.type.name} >{formatTypes}</li>
+            return <li key={index} className={`type-${value.type.name}`} >{formatTypes}</li>
           });
 
           let classType = pokemon.types.map((value) => value.type.name)[0];
@@ -24,7 +24,7 @@ const Cards = ({ pokemons }) => {
           return (
             <li
               key={index}
-              className={classType + ' card__single ' + classScale}
+              className={`card__single ${classType} ${classScale}`}
               onMouseOver={() => setHoverCard(index)}
               onMouseOut={() => setHoverCard(null)}
             >

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getPokemons, getPokemonsData, searchPokemonData } from './api';
 import Header from './components/Header';
 import Pokedex from './components/Pokedex';
+import Details from './components/Details';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
   const fetchPokemons = async () => {
     try {
       setLoading(true);
+      setAllPokemons(true);
 
       const data = await getPokemons(itensPerPage, itensPerPage * page);
       const promises = data.results.map(async (pokemon) => {
@@ -61,10 +63,11 @@ const App = () => {
   const searchPokemons = async (pokemon) => {
     try {
       setLoading(true);
+
       const result = await searchPokemonData(pokemon);
   
       setAllPokemons(false);
-      setPokemons([result])
+      setPokemons([result]);
       setLoading(false);
     } catch (err) {
       console.log(`ERROR: ${err}`);
@@ -77,7 +80,7 @@ const App = () => {
 
       { (allPokemons)
           ? <Pokedex pokemons={pokemons} loading={loading} page={page} setPage={setPage} allPages={allPages} />
-          : <Pokedex pokemons={pokemons} loading={loading} />
+          : <Details pokemons={pokemons} loading={loading} fetchPokemons={fetchPokemons} />
       }
 
       <Footer />
