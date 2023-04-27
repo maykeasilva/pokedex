@@ -1,6 +1,5 @@
 import { useState, useMemo } from 'react';
 import { VscMenu, VscSearch, VscHeartFilled, VscGithubInverted } from 'react-icons/vsc';
-import Logo from '../assets/logo.webp';
 import './Header.css';
 
 const Header = ({ searchPokemons, allNames }) => {
