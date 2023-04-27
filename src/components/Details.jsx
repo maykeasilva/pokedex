@@ -2,7 +2,7 @@ import { VscChromeClose } from 'react-icons/vsc';
 import Loading from './Loading';
 import './Details.css';
 
-const Details = ({ pokemons, loading, fetchPokemons }) => {
+const Details = ({ details, loading, setAllPokemons }) => {
 
   return (
     <div className='details'>
@@ -11,7 +11,7 @@ const Details = ({ pokemons, loading, fetchPokemons }) => {
           : (
             <>
               {
-                pokemons.map((pokemon, index) => {
+                details.map((pokemon, index) => {
                   const formatName = pokemon.name.replace(/-/g, ' ')
                     .split(' ')
                     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -42,9 +42,15 @@ const Details = ({ pokemons, loading, fetchPokemons }) => {
                       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                       .join(' ');
 
-                    let calculatedWidth = (value.base_stat / 255) * 68;
+                    let calculatedWidth = (value.base_stat / 255) * 60;
 
-                    return <li key={index}><p>{formatStats}:</p><span style={{ width: calculatedWidth + '%' }}></span><span>{value.base_stat}</span></li>;
+                    return (
+                      <li key={index}>
+                        <p>{formatStats}:</p>
+                        <span style={{ width: calculatedWidth + '%' }}></span>
+                        <span>{value.base_stat}</span>
+                      </li>
+                    )
                   });
 
                   let classType = pokemon.types.map((value) => value.type.name)[0];
@@ -66,12 +72,12 @@ const Details = ({ pokemons, loading, fetchPokemons }) => {
 
                       <h2>Stats</h2>
                       <ul className='details__stats'>{stats}</ul>
+
+                      <button onClick={() => setAllPokemons(true)}><VscChromeClose className='close__icon' /></button>
                     </div>
                   );
                 })
               }
-
-              <button onClick={fetchPokemons}>Show All</button>
             </>
           )
       }

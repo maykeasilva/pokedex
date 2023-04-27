@@ -2,7 +2,7 @@ import Loading from './Loading';
 import Cards from './Cards';
 import Pagination from './Pagination';
 
-const Pokedex = ({ pokemons, loading, page, setPage, allPages }) => {
+const Pokedex = ({ pokemons, loading, page, setPage, allPages, openDetails }) => {
 
   return (
     <div className='pokedex'>
@@ -11,7 +11,7 @@ const Pokedex = ({ pokemons, loading, page, setPage, allPages }) => {
             ? <Loading />
             : (
               <>
-                <Cards pokemons={pokemons} />
+                <Cards pokemons={pokemons} openDetails={openDetails} />
                 <Pagination page={page} setPage={setPage} allPages={allPages} />
               </>
             )

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Cards.css';
 
-const Cards = ({ pokemons }) => {
+const Cards = ({ pokemons, openDetails }) => {
   const [hoverCard, setHoverCard] = useState(null);
 
   return (
@@ -27,6 +27,7 @@ const Cards = ({ pokemons }) => {
               className={`card__single ${classType} ${classScale}`}
               onMouseOver={() => setHoverCard(index)}
               onMouseOut={() => setHoverCard(null)}
+              onClick={() => openDetails(index)}
             >
               <img className='card__image' src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
               <h2 className='card__name'>{formatName}</h2>

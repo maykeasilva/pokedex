@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 const App = () => {
   const [allNames, setAllNames] = useState([]);
   const [pokemons, setPokemons] = useState([]);
+  const [details, setDetails] = useState([]);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
   const [allPages, setAllPages] = useState(0);
@@ -63,11 +64,24 @@ const App = () => {
   const searchPokemons = async (pokemon) => {
     try {
       setLoading(true);
+      setDetails([]);
 
       const result = await searchPokemonData(pokemon);
-  
+      
       setAllPokemons(false);
-      setPokemons([result]);
+      setDetails([result]);
+      setLoading(false);
+    } catch (err) {
+      console.log(`ERROR: ${err}`);
+    };
+  };
+
+  const openDetails = (index) => {
+    try {
+      setLoading(true);
+      setDetails([]);
+      setAllPokemons(false);
+      setDetails([pokemons[index]]);
       setLoading(false);
     } catch (err) {
       console.log(`ERROR: ${err}`);
@@ -79,8 +93,8 @@ const App = () => {
       <Header searchPokemons={searchPokemons} allNames={allNames} />
 
       { (allPokemons)
-          ? <Pokedex pokemons={pokemons} loading={loading} page={page} setPage={setPage} allPages={allPages} />
-          : <Details pokemons={pokemons} loading={loading} fetchPokemons={fetchPokemons} />
+          ? <Pokedex pokemons={pokemons} loading={loading} page={page} setPage={setPage} allPages={allPages} openDetails={openDetails} />
+          : <Details details={details} loading={loading} setAllPokemons={setAllPokemons} />
       }
 
       <Footer />
